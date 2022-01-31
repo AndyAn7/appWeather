@@ -9,11 +9,36 @@ var moisture = document.querySelector('#moisture');
 var exposure = document.querySelector('#rays');
 var currentDay = document.querySelector('#date');
 var weatherIcon = document.querySelector('#weatherIcon');
+var container = document.querySelector('#card-container');
 let previousSearches = JSON.parse(localStorage.getItem('recent')) || [];
 var deletePrev = document.querySelector('#clear-btn');
-var container = document.querySelector('#card-container');
-/* https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid=5490ec2aa2dd516ff7e09f6aff3cf7c0 */
+console.log(previousSearches);
 
 // current moment
 var now = moment();
 currentDay.textContent = (now.format("dddd, MMMM Do YYYY"));
+
+// retrieval function for weather calls
+function retrieveWeather (city) {
+    container.innerHTML = "";
+    var APIkey = "5490ec2aa2dd516ff7e09f6aff3cf7c0";
+    console.log(city);
+
+    // initial call for coordinates of city
+    var apiRequest = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIkey;
+
+    fetch(apiRequest)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+
+                var lattitude = data.coord.lat;
+                var longitude = data.coord.lon;
+                console.log(lattitude);
+                console.log(longitude);
+            })
+        }
+    })
+}
+retrieveWeather()
