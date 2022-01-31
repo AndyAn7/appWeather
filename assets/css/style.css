@@ -1,3 +1,15 @@
 * {
     font-family: 'Nunito', sans-serif;
 }
+
+#navBar {
+    box-shadow: 0px 5px 12px;
+}
+
+#search-history-card {
+    box-shadow: 0px 5px 12px;    
+}
+
+#forecast-accordian {
+    box-shadow: 0px 5px 12px;
+}
