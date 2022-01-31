@@ -10,8 +10,38 @@
     <link rel="shortcut icon" href="./assets/images/PartlyCloudyDay.png" type="image/x-icon">
     <title>appWeather</title>
 </head>
+<!-- background color -->
+<body style="background-color: #bdd5ea">
+    <!-- navigation bar -->
+    <nav id = "navBar" class="navbar navbar-dark bg-dark ">
+        <section class="container-fluid">
+          <a class="navbar-brand h1">
+            <img src="assets\images\PartlyCloudyDay.png" alt="icon of cloudy sun" width="50" height="45" class="d-inline-block align-text-center">
+          </a>
+          <form id="city-form" class="d-flex">
+            <input id = "cityName" class="form-control me-2" type="search" placeholder="City" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Request</button>
+          </form>
+        </section>
+      </nav>
 
-<body style="background-color: #7ec4cf">
+      <!-- main -->
+      <div id="main-content" class="row mt-5 mx-3">
+
+        <!-- recent searches -->
+        <div class="col-sm-12 col-md-4">
+          <div id="search-history-card" class="card">
+            <div class="card-body col-12">
+                <h6 class="card-header">Recent</h6>
+                <div id = "btn-card" class="card-body">
+                    <div id ="btn-div" class="btn-group-vertical d-flex gap-1 mx-auto"> </div>
+                    <div class="btn-group-vertical d-flex gap-1 mx-auto">
+                      <button id = "clear-btn"  class="btn btn-outline-dark">Clear Recent</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
 
     
     
