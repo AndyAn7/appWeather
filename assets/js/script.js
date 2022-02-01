@@ -44,7 +44,7 @@ function retrieveWeather (city) {
                 summary.textContent = 'Summary: Currently, ' + data.name + ' is experiencing ' + data.weather[0].description + '.';
                 temp.textContent = 'Temperature: ' + Math.floor ((data.main.temp - 273.15) * 1.8 +32) + '°F';
                 var wCon = data.weather[0].icon;
-                weatherIcon.innerHTML = `<img src='http://openweathermap.org/img/w/${wCon}.png' style = 'height: 25vh'/>`;
+                weatherIcon.innerHTML = `<img src='http://openweathermap.org/img/w/${wCon}.png' style = 'height: 15vh'/>`;
                 wind.textContent = 'Wind: ' + Math.floor(data.wind.speed * 2.237) + 'mph';
                 moisture.textContent = 'Humidity: ' + data.main.humidity + '%';
 
@@ -73,4 +73,4 @@ function retrieveWeather (city) {
         }
     })
 }
-retrieveWeather('philadelphia')
+retrieveWeather('redmond')
