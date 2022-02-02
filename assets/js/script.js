@@ -72,7 +72,7 @@ function retrieveWeather (city) {
                             for (let index = 0; index < 5; index++) {
                 
                                 var cards = document.createElement('div');
-                                    cards.className = "col bg-primary text-white rounded mx-2 mb-3 pb-2";
+                                    cards.className = "col bg-dark text-white rounded mx-2 mb-3 pb-2";
                                     container.append(cards);
 
                                 var cardsD = document.createElement('h5');
@@ -102,5 +102,5 @@ function retrieveWeather (city) {
             })
         }
     })
-}
+};
 retrieveWeather('redmond')
