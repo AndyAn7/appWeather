@@ -6,4 +6,4 @@ Upon arrival, the user is extended an input field where a city can be submitted 
 
 [githubRepo](https://github.com/AndyAn7/appWeather)
 
-![image]()
+![image](https://github.com/AndyAn7/appWeather/blob/main/assets/images/hwSS.png?raw=true)
