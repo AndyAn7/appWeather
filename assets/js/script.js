@@ -105,13 +105,14 @@ function retrieveWeather (city) {
     })
 };
 
+// event listener of user input
 cityButton.addEventListener("click", chosenCityF);
 
+// render city's weather
 function chosenCityF(event) {event.preventDefault();
     var cityRetrieved = cityInterest.value.trim();
     console.log(cityRetrieved);
     retrieveWeather(cityRetrieved);
     previousSearches.push(cityRetrieved);
     localStorage.setItem('search-history', JSON.stringify(previousSearches));
-    renPrevCities();
 }
