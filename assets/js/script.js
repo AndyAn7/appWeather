@@ -1,6 +1,7 @@
 // global variables
 var form = document.querySelector('#form');
 var cityInterest = document.querySelector('#city');
+var cityButton = document.querySelector('#requestButton');
 var button = document.querySelector('#btn-div')
 var summary = document.querySelector('#summary');
 var temp = document.querySelector('#temp');
@@ -10,7 +11,7 @@ var exposure = document.querySelector('#rays');
 var currentDay = document.querySelector('#date');
 var weatherIcon = document.querySelector('#weatherIcon');
 var container = document.querySelector('#card-container');
-let previousSearches = JSON.parse(localStorage.getItem('recent')) || [];
+let previousSearches = JSON.parse(localStorage.getItem('search-history')) || [];
 var deletePrev = document.querySelector('#clear-btn');
 console.log(previousSearches);
 
@@ -103,4 +104,14 @@ function retrieveWeather (city) {
         }
     })
 };
-retrieveWeather('redmond')
+
+cityButton.addEventListener("click", chosenCityF);
+
+function chosenCityF(event) {event.preventDefault();
+    var cityRetrieved = cityInterest.value.trim();
+    console.log(cityRetrieved);
+    retrieveWeather(cityRetrieved);
+    previousSearches.push(cityRetrieved);
+    localStorage.setItem('search-history', JSON.stringify(previousSearches));
+    renPrevCities();
+}
