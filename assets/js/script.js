@@ -44,7 +44,8 @@ function retrieveWeather (city) {
                 summary.textContent = 'Summary: Currently, ' + data.name + ' is experiencing ' + data.weather[0].description + '.';
                 temp.textContent = 'Temperature: ' + Math.floor ((data.main.temp - 273.15) * 1.8 +32) + '°F';
                 var wCon = data.weather[0].icon;
-                weatherIcon.innerHTML = `<img src='http://openweathermap.org/img/w/${wCon}.png' style = 'height: 15vh'/>`;
+                weatherIcon.innerHTML = `<img src='http://openweathermap.org/img/w/${wCon}.png' style = 'height: 8vh'/>`;
+                //  ./assets/images/ to show custom fonts is ultimate goal ^^^ naming conventions at openweathermap.org
                 wind.textContent = 'Wind: ' + Math.floor(data.wind.speed * 2.237) + 'mph';
                 moisture.textContent = 'Humidity: ' + data.main.humidity + '%';
 
@@ -66,6 +67,35 @@ function retrieveWeather (city) {
                             } else if(data.daily[0].uvi >= 8) {
                                 exposure.classList.add('bg-danger');
                             }
+
+                            // loop to populate forecast
+                            for (let index = 0; index < 5; index++) {
+                
+                                var cards = document.createElement('div');
+                                    cards.className = "col bg-primary text-white rounded mx-2 mb-3 pb-2";
+                                    container.append(cards);
+
+                                var cardsD = document.createElement('h5');
+                                    cardsD.className = "mt-3 mb-0";
+                                    let nextDay  = moment().add([index],'days');
+                                    cardsD.textContent = (nextDay.format("L"));            
+
+                                var cardsT = document.createElement('p');
+                                    cardsT.classList.add("card-text");
+                                    cardsT.textContent = "Temp: " + Math.floor((data.daily[index].temp.day - 273.15) * 1.8 + 32) + "°F";
+                                
+                                var cardsW = document.createElement('p');
+                                    cardsW.classList.add("card-text");
+                                    cardsW.textContent = "Wind: " + Math.floor(data.daily[index].wind_speed * 2.237) + "mph";
+                            
+                                var cardsM = document.createElement('p');
+                                    cardsM.classList.add("card-text");
+                                    cardsM.textContent = "Wind: " + data.daily[index].humidity+ "%";
+                                    
+
+                                    cards.append(cardsD, cardsT, cardsW, cardsM);
+                            }
+                            
                         })
                     }
                 })
