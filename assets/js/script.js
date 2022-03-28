@@ -52,14 +52,59 @@ function retrieveWeather (city) {
                     case '02d':
                         weatherIcon.innerHTML = `<img src='./assets/images/PartlyCloudyDay.png' style = 'height: 8vh'/>`;
                         break;
+                    case '03d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Cloudy.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '04d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Overcast.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '09d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/HeavyRain.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '10d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/IsoRainSwrsDay.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '11d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/CloudRainThunder.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '13d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/HeavySnow.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '50d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Mist.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '01n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Clear.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '02n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/PartlyCloudyNight.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '03n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Overcast.png' style = 'height: 8vh'/>`;
+                        break;
                     case '04n':
                         weatherIcon.innerHTML = `<img src='./assets/images/PartlyCloudyNight.png' style = 'height: 8vh'/>`;
                         break;
-                    
+                    case '09n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/ModRainSwrsNight.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '10n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/ModRainSwrsNight.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '11n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/PartCloudRainThunderNight.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '13n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/HeavySnow.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '50n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Mist.png' style = 'height: 8vh'/>`;
+                        break;
                     default:
                         break;
                 }
                 //  ./assets/images/ to show custom fonts is ultimate goal ^^^ naming conventions at openweathermap.org
+
                 wind.textContent = 'Wind: ' + Math.floor(data.wind.speed * 2.237) + 'mph';
                 moisture.textContent = 'Humidity: ' + data.main.humidity + '%';
 
@@ -156,5 +201,4 @@ function clearHistory(){
 
 
 // TODO
-// clear previous searches
 // display icons https://openweathermap.org/weather-conditions
