@@ -13,7 +13,7 @@ var weatherIcon = document.querySelector('#weatherIcon');
 var container = document.querySelector('#card-container');
 let previousSearches = JSON.parse(localStorage.getItem('search-history')) || [];
 var deletePrev = document.querySelector('#clear-btn');
-console.log(previousSearches);
+var historyContainer = document.getElementById('unlist');
 
 // current moment
 var now = moment();
@@ -45,7 +45,20 @@ function retrieveWeather (city) {
                 summary.textContent = 'Summary: Currently, ' + data.name + ' is experiencing ' + data.weather[0].description + '.';
                 temp.textContent = 'Temperature: ' + Math.floor ((data.main.temp - 273.15) * 1.8 +32) + '°F';
                 var wCon = data.weather[0].icon;
-                weatherIcon.innerHTML = `<img src='http://openweathermap.org/img/w/${wCon}.png' style = 'height: 8vh'/>`;
+                switch (wCon) {
+                    case '01d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/Sunny.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '02d':
+                        weatherIcon.innerHTML = `<img src='./assets/images/PartlyCloudyDay.png' style = 'height: 8vh'/>`;
+                        break;
+                    case '04n':
+                        weatherIcon.innerHTML = `<img src='./assets/images/PartlyCloudyNight.png' style = 'height: 8vh'/>`;
+                        break;
+                    
+                    default:
+                        break;
+                }
                 //  ./assets/images/ to show custom fonts is ultimate goal ^^^ naming conventions at openweathermap.org
                 wind.textContent = 'Wind: ' + Math.floor(data.wind.speed * 2.237) + 'mph';
                 moisture.textContent = 'Humidity: ' + data.main.humidity + '%';
@@ -53,7 +66,7 @@ function retrieveWeather (city) {
                 // exposure
                 var raysAPI = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lattitude + '&lon=' + longitude + '&exclude=minutely,hourly' + '&appid=' + APIkey + '&cnt=1';
                 
-                // API retrieval and application of data to DOM element
+                // API retrieval and application of data to DOM
                 fetch(raysAPI)
                 .then(function (response) {
                     if (response.ok) {
@@ -115,4 +128,33 @@ function chosenCityF(event) {event.preventDefault();
     retrieveWeather(cityRetrieved);
     previousSearches.push(cityRetrieved);
     localStorage.setItem('search-history', JSON.stringify(previousSearches));
+    historyContainer.innerHTML = '';
+
+    displayHistory();
 }
+
+function displayHistory(){
+    console.log(previousSearches);
+
+    for (let i = 0; i < previousSearches.length; i++) {
+        var listItem = document.createElement('li');
+        listItem.textContent = previousSearches[i];
+        historyContainer.appendChild(listItem);
+
+    }
+}
+
+displayHistory();
+
+deletePrev.addEventListener("click", clearHistory);
+
+function clearHistory(){
+    localStorage.removeItem('search-history');
+    previousSearches = [];
+    historyContainer.innerHTML = '';
+}
+
+
+// TODO
+// clear previous searches
+// display icons https://openweathermap.org/weather-conditions
