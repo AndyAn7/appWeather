@@ -118,10 +118,12 @@ function retrieveWeather (city) {
                         response.json().then(function (data) {
                             console.log(data);
 
+                            exposure.classList.remove('bg-success', 'bg-warning', 'bg-danger');
+
                             exposure.textContent = 'UV Exposure: ' + data.daily[0].uvi;
                             if (data.daily[0].uvi < 2 ) {
                                 exposure.classList.add('bg-success');
-                            } else if (data.daily[0].uvi >= 3 && data.current.uvi < 7) {
+                            } else if (data.daily[0].uvi >= 3 && data.daily[0].uvi < 7) {
                                 exposure.classList.add('bg-warning');
                             } else if(data.daily[0].uvi >= 8) {
                                 exposure.classList.add('bg-danger');
@@ -149,7 +151,7 @@ function retrieveWeather (city) {
                             
                                 var cardsM = document.createElement('p');
                                     cardsM.classList.add("card-text");
-                                    cardsM.textContent = "Wind: " + data.daily[index].humidity+ "%";
+                                    cardsM.textContent = "Humidity: " + data.daily[index].humidity+ "%";
                                     
 
                                     cards.append(cardsD, cardsT, cardsW, cardsM);
@@ -182,7 +184,11 @@ function displayHistory(){
     console.log(previousSearches);
 
     for (let i = 0; i < previousSearches.length; i++) {
-        var listItem = document.createElement('li');
+        var listItem = document.createElement('button');
+        listItem.classList.add('btn', 'btn-light', 'btn-sm', 'mx-1', 'my-1', 'd-block');
+        listItem.addEventListener('click', function(event) {
+            retrieveWeather(event.target.textContent);
+        });
         listItem.textContent = previousSearches[i];
         historyContainer.appendChild(listItem);
 
